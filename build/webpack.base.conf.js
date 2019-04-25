@@ -46,11 +46,24 @@ module.exports = {
       //   loaders: ["style", "css", "sass"]
       // },
       {
+        test: /\.svg$/,
+        loader: "svg-sprite-loader",
+        include: [
+          path.resolve(__dirname, '../src/common/icon/svg') //包括字体图标文件
+        ],
+        options: {
+          symbolId: 'icon-[name]' //这个没有生效，生效的是默认的name
+        }
+      },
+      {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: 'url-loader',
+        loader: "url-loader",
+        exclude: [
+          path.resolve(__dirname, '../src/common/icon/svg'), //排除字体图标文件
+        ],
         options: {
           limit: 10000,
-          name: utils.assetsPath('img/[name].[hash:7].[ext]')
+          name: utils.assetsPath("img/[name].[hash:7].[ext]")
         }
       },
       {

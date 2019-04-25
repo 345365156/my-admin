@@ -7,13 +7,13 @@ import Axios from 'axios'
 import Api from './api/index'
 import router from './router'
 import Element from 'element-ui'
+import './styles/element-variables.scss'
 import i18n from './language/index.js'
 import 'normalize.css/normalize.css'
-import './styles/element-variables.scss'
-import '@/styles/index.scss'
-
+import '@/styles/index.scss' // global css
 import 'element-ui/lib/theme-chalk/index.css'
 import * as filters from './common/filters'
+import './common/icon/index.js'
 
 Vue.use(Vuex);
 Vue.use(Element, {

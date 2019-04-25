@@ -1,6 +1,6 @@
 <template>
   <div class="login-container">
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on"
+    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="off"
              label-position="left">
 
       <div class="title-container">
@@ -20,7 +20,7 @@
           :placeholder="$t('login.username')"
           name="username"
           type="text"
-          auto-complete="on"
+          auto-complete="off"
         />
       </el-form-item>
 
@@ -52,22 +52,22 @@
         {{ $t('login.logIn') }}
       </el-button>
 
-      <div style="position:relative">
-        <div class="tips">
-          <span>{{ $t('login.username') }} : admin</span>
-          <span>{{ $t('login.password') }} : {{ $t('login.any') }}</span>
-        </div>
-        <div class="tips">
-          <span style="margin-right:18px;">
-            {{ $t('login.username') }} : editor
-          </span>
-          <span>{{ $t('login.password') }} : {{ $t('login.any') }}</span>
-        </div>
+      <!--<div style="position:relative">-->
+      <!--<div class="tips">-->
+      <!--<span>{{ $t('login.username') }} : admin</span>-->
+      <!--<span>{{ $t('login.password') }} : {{ $t('login.any') }}</span>-->
+      <!--</div>-->
+      <!--<div class="tips">-->
+      <!--<span style="margin-right:18px;">-->
+      <!--{{ $t('login.username') }} : editor-->
+      <!--</span>-->
+      <!--<span>{{ $t('login.password') }} : {{ $t('login.any') }}</span>-->
+      <!--</div>-->
 
-        <!--<el-button class="thirdparty-button" type="primary" @click="showDialog=true">-->
-          <!--{{ $t('login.thirdparty') }}-->
-        <!--</el-button>-->
-      </div>
+      <!--<el-button class="thirdparty-button" type="primary" @click="showDialog=true">-->
+      <!--{{ $t('login.thirdparty') }}-->
+      <!--</el-button>-->
+      <!--</div>-->
     </el-form>
 
     <el-dialog :title="$t('login.thirdparty')" :visible.sync="showDialog">
@@ -90,7 +90,7 @@
     data() {
       const validateUsername = (rule, value, callback) => {
         if (!validUsername(value)) {
-          callback(new Error('Please enter the correct user name'))
+          callback(new Error('Please enter user name'))
         } else {
           callback()
         }
@@ -152,7 +152,7 @@
         }
       },
       showPwd() {
-        this.passwordType = this.passwordType === 'password' ?'' : 'password';
+        this.passwordType = this.passwordType === 'password' ? '' : 'password';
         this.$nextTick(() => {
           this.$refs.password.focus()
         })
@@ -229,7 +229,7 @@
         border: 0px;
         -webkit-appearance: none;
         border-radius: 0px;
-        padding: 12px 5px 12px 15px;
+        padding: 12px 5px 12px 5px;
         color: $light_gray;
         height: 47px;
         caret-color: $cursor;
@@ -253,19 +253,20 @@
 <style lang="scss" scoped>
   $bg: #2d3a4b;
   $dark_gray: #889aa4;
-  $light_gray: #eee;
+  $light_gray: #ccc;
 
   .login-container {
     min-height: 100%;
     width: 100%;
     background-color: $bg;
     overflow: hidden;
+    display: flex;
+    align-items: center;
 
     .login-form {
       position: relative;
       width: 520px;
       max-width: 100%;
-      padding: 160px 35px 0;
       margin: 0 auto;
       overflow: hidden;
     }
@@ -283,10 +284,12 @@
     }
 
     .svg-container {
-      padding: 6px 5px 6px 15px;
+      padding: 6px 0;
+      margin-left: 15px;
       color: $dark_gray;
       vertical-align: middle;
-      width: 30px;
+      width: 25px;
+      font-size: 16px;
       display: inline-block;
     }
 

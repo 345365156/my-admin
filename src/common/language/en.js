@@ -73,7 +73,7 @@ export default {
   login: {
     title: 'Login Form',
     logIn: 'Login',
-    username: 'Username',
+    account: 'Account',
     password: 'Password',
     any: 'any',
     thirdparty: 'Or connect with',
@@ -169,5 +169,10 @@ export default {
     tagsView: 'Open Tags-View',
     fixedHeader: 'Fixed Header',
     sidebarLogo: 'Sidebar Logo'
+  },
+  msg: {
+    account: 'Please enter user E-mail',
+    password: 'The password can not be less than 6 digits',
+    capslock: 'Caps lock is On'
   }
 }

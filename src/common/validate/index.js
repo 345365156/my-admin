@@ -1,5 +1,5 @@
 /**
- * Created by jiachenpan on 16/11/18.
+ * 格式验证 Created by lisen.
  */
 /**
  * @param {string} path

@@ -10,11 +10,11 @@ export const env = {
     },
     // 测试模式
     testMode: {
-      server: 'http://trackorder-admin-api.int.anniu-inc.com/' // 测试环境地址
+      server: 'http://xyzc-admin-api.int.anniu-inc.com/' // 测试环境地址
     },
     // 生产环境
     prodMode: {
-      server: 'http://trackorder-admin-api.kongapi.com/' // 生产环境地址
+      server: '' // 生产环境地址
     }
   }
 }

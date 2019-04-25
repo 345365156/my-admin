@@ -8,7 +8,7 @@ import Api from './api/index'
 import router from './router'
 import Element from 'element-ui'
 import './styles/element-variables.scss'
-import i18n from './language/index.js'
+import i18n from './common/language/index.js'
 import 'normalize.css/normalize.css'
 import '@/styles/index.scss' // global css
 import 'element-ui/lib/theme-chalk/index.css'

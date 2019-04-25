@@ -2,14 +2,16 @@ import axios from 'axios'
 import {env} from './config'
 import {Message} from 'element-ui'
 
-export const baseURL = env.deploy.testMode.server; // 请求地址 devMode：开发环境  testMode：测试环境  prodMode：生产环境
+// 请求地址 devMode：开发环境  testMode：测试环境  prodMode：生产环境
+export const baseURL = env.deploy.testMode.server;
 
 function apiAxios(method, url, params, response, contentType) {
   axios({
     headers: {
+      'AccessToken': sessionStorage.getItem('accessToken'),
+      'Code': sessionStorage.getItem('code'),
       'Content-Type': contentType,
-      'Key': localStorage.getItem('userId'),
-      'AccessToken': localStorage.getItem('accessToken')
+      'Accept': 'application/json, text/plain, */*'
     },
     method: method,
     url: baseURL + url,
@@ -27,7 +29,7 @@ function apiAxios(method, url, params, response, contentType) {
 axios.interceptors.request.use(
   function (config) {
     // 在发送请求之前做些什么
-    console.log(config);
+    return config // 拦截之后必须返回config
   }, function (error) {
     // 对请求错误做些什么
     return Promise.reject(error);
@@ -36,13 +38,12 @@ axios.interceptors.request.use(
 // 响应拦截器
 axios.interceptors.response.use(
   res => {
-    if (res.status >= 200 && res.status < 300) {
-      return res // 返回
+    if (res.status === 200 && res.statusText === 'OK') {
+      return res.data
     } else {
       Message.error(res.data.result) // 请求失败
     }
   }, error => {
-    console.log(error)
     let errorString = error.toString()
     if (errorString.includes('timeout')) {
       Message.error('请求超时')

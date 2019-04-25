@@ -10,21 +10,21 @@
         <lang-select class="set-language"/>
       </div>
 
-      <el-form-item prop="username">
+      <el-form-item prop="account">
         <span class="svg-container">
           <svg-icon icon-class="user"></svg-icon>
         </span>
         <el-input
           ref="username"
-          v-model="loginForm.username"
-          :placeholder="$t('login.username')"
+          v-model="loginForm.account"
+          :placeholder="$t('login.account')"
           name="username"
           type="text"
           auto-complete="off"
         />
       </el-form-item>
 
-      <el-tooltip v-model="capsTooltip" content="Caps lock is On" placement="right" manual>
+      <el-tooltip v-model="capsTooltip" :content="$t('msg.capslock')" placement="right" manual>
         <el-form-item prop="password">
           <span class="svg-container">
             <svg-icon icon-class="password"></svg-icon>
@@ -81,7 +81,7 @@
 </template>
 
 <script>
-  import {validUsername} from '@/common/validate'
+  import {validEmail} from '@/common/validate'
   import LangSelect from '@/components/LangSelect'
   // import SocialSign from './components/SocialSignin' // 第三方登录
 
@@ -89,26 +89,26 @@
     name: 'Login',
     data() {
       const validateUsername = (rule, value, callback) => {
-        if (!validUsername(value)) {
-          callback(new Error('Please enter user name'))
+        if (!validEmail(value)) {
+          callback(new Error(this.$t('msg.account')))
         } else {
           callback()
         }
       };
       const validatePassword = (rule, value, callback) => {
         if (value.length < 6) {
-          callback(new Error('The password can not be less than 6 digits'))
+          callback(new Error(this.$t('msg.password')))
         } else {
           callback()
         }
       };
       return {
         loginForm: {
-          username: '',
+          account: '',
           password: ''
         },
         loginRules: {
-          username: [
+          account: [
             {required: true, trigger: 'blur', validator: validateUsername}
           ],
           password: [
@@ -139,6 +139,7 @@
       // window.removeEventListener('storage', this.afterQRScan)
     },
     methods: {
+      // 大小写提示
       checkCapslock({shiftKey, key} = {}) {
         if (key && key.length === 1) {
           if (shiftKey && (key >= 'a' && key <= 'z') || !shiftKey && (key >= 'A' && key <= 'Z')) {
@@ -151,26 +152,31 @@
           this.capsTooltip = false
         }
       },
+      // 显示密码
       showPwd() {
         this.passwordType = this.passwordType === 'password' ? '' : 'password';
         this.$nextTick(() => {
           this.$refs.password.focus()
         })
       },
+      // 登录
       handleLogin() {
         this.$refs.loginForm.validate(valid => {
           if (valid) {
             this.loading = true;
-            this.$store.dispatch('user/login', this.loginForm)
-              .then(() => {
-                this.$router.push({path: this.redirect || '/'});
-                this.loading = false
-              })
-              .catch(() => {
-                this.loading = false
-              })
+            // this.$store.dispatch('user/login', this.loginForm)
+            //   .then(() => {
+            //     this.$router.push({path: this.redirect || '/'});
+            //     this.loading = false
+            //   })
+            //   .catch(() => {
+            //     this.loading = false
+            //   })
+            this.$api.post('staff/login', this.loginForm, res => {
+              console.log(res)
+            })
           } else {
-            console.log('error submit!!');
+            this.$message.error('error submit.');
             return false
           }
         })
@@ -298,7 +304,7 @@
 
       .title {
         font-size: 26px;
-        color: $light_gray;
+        color: #fff;
         margin: 0px auto 40px auto;
         text-align: center;
         font-weight: bold;

@@ -73,7 +73,7 @@ export default {
   login: {
     title: '系统登录',
     logIn: '登录',
-    username: '账号',
+    account: '账号',
     password: '密码',
     any: '随便填',
     thirdparty: '第三方登录',
@@ -169,5 +169,10 @@ export default {
     tagsView: '开启 Tags-View',
     fixedHeader: '固定 Header',
     sidebarLogo: '侧边栏 Logo'
+  },
+  msg: {
+    account: '请输入账户邮箱',
+    password: '密码不能少于6个字符',
+    capslock: '大写键盘已打开'
   }
 }

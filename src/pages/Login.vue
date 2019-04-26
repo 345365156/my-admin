@@ -173,7 +173,8 @@
             //     this.loading = false
             //   })
             this.$api.post('staff/login', this.loginForm, res => {
-              console.log(res)
+              localStorage.setItem('userInfo', JSON.stringify(res.data))
+              this.$router.push('/index')
             })
           } else {
             this.$message.error('error submit.');

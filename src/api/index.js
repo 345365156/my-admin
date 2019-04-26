@@ -9,7 +9,7 @@ function apiAxios(method, url, params, response, contentType) {
   axios({
     headers: {
       'AccessToken': sessionStorage.getItem('accessToken'),
-      'Code': sessionStorage.getItem('code'),
+      'Code': sessionStorage.getItem('RoleCode'),
       'Content-Type': contentType,
       'Accept': 'application/json, text/plain, */*'
     },

@@ -16,21 +16,32 @@
 
 <script>
 export default {
-  computed: {
-    language() {
-      // return this.$store.getters.language
-      return localStorage.getItem('lang')
+  data() {
+    return {
+      language: localStorage.getItem('language') ? localStorage.getItem('language') : ''
     }
+  },
+  computed: {
+    // language() {
+    //   // return this.$store.getters.language
+    // }
   },
   methods: {
     handleSetLanguage(lang) {
+      this.language = lang
       this.$i18n.locale = lang
-      localStorage.setItem('lang', lang)
+      localStorage.setItem('language', lang)
       // this.$store.dispatch('app/setLanguage', lang)
       this.$message({
-        message: 'Switch Language Success',
+        message: this.$t('msg.switchLanguage'),
         type: 'success'
       })
+    }
+  },
+  watch: {
+    language: function(n, o) {
+      this.language = n
+      localStorage.setItem('language', n)
     }
   }
 }

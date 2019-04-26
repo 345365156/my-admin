@@ -173,6 +173,7 @@ export default {
   msg: {
     account: 'Please enter user E-mail',
     password: 'The password can not be less than 6 digits',
-    capslock: 'Caps lock is On'
+    capslock: 'Caps lock is On',
+    switchLanguage: 'Language switching to English'
   }
 }

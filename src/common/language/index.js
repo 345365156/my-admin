@@ -2,7 +2,6 @@ import Vue from 'vue'
 import enLocale from './en'
 import zhLocale from './zh'
 import VueI18n from 'vue-i18n'
-import Cookies from 'js-cookie'
 import elementEnLocale from 'element-ui/lib/locale/lang/en' // element-ui lang
 import elementZhLocale from 'element-ui/lib/locale/lang/zh-CN'// element-ui lang
 
@@ -20,10 +19,10 @@ const messages = {
 };
 
 export function getLanguage() {
-  const chooseLanguage = Cookies.get('language');
+  const chooseLanguage = localStorage.getItem('language');
   if (chooseLanguage) return chooseLanguage;
 
-  // 如果storage中没有指定lang
+  // 如果storage中没有指定language
   const language = (navigator.language || navigator.browserLanguage).toLowerCase();
   const locales = Object.keys(messages);
   for (const locale of locales) {

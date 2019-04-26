@@ -173,6 +173,7 @@ export default {
   msg: {
     account: '请输入账户邮箱',
     password: '密码不能少于6个字符',
-    capslock: '大写键盘已打开'
+    capslock: '大写键盘已打开',
+    switchLanguage: '语言切换为中文'
   }
 }

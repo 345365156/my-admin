@@ -13,7 +13,7 @@ import 'normalize.css/normalize.css'
 import '@/common/styles/index.scss' // global css
 import 'element-ui/lib/theme-chalk/index.css'
 import * as filters from './common/filters'
-import '@/common/icon/index.js'
+import '@/assets/icon/index.js'
 
 Vue.use(Vuex);
 Vue.use(Element, {
